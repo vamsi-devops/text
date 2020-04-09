@@ -1,0 +1,49 @@
+AWS EkS integration with AWS CodePipeline 
+
+1)create an ECR Repository copy ECR URI aand copy the url in the Buildspec.yml in the github repository
+
+
+
+
+2)create a build project in CodeBuild , in this you have to create a new service role and
+   make sure that the service role has  EC2 Registry full access policy
+here we will have builspec.yml 
+
+
+
+
+3)Before going to CodeDeploy you have to launch Redhat/Ubuntu EC2 instance in which you have 
+  to install AWS CLI 2.0 version and ruby and install code deploy agent and also give
+ adminrole permission  to that ec2 instance
+
+you have to install these below commands in ec2 instance 
+
+   sudo apt-get update
+   sudo apt-get install awscli
+   sudo apt-get install ruby2.0
+   cd /home/ubuntu
+   sudo aws s3 cp s3://aws-codedeploy-us-east-1/latest/install . --region us-east-1
+   sudo chmod +x ./install
+   sudo ./install auto
+
+
+4) coming to CodeDeploy you have to create a Application &
+         deployment group here we will have Appspec.yml
+
+it takes 15 minutes above for creation of cluster if we want to check whether the cluster is creating
+go to create cluster.yml  
+so i have given the region eu-west-3(paris) in this my cluster will form with the name basic-cluster1
+
+
+
+5) Now,  create a Pipeline in which source,Build ,deploy  the deployement is done to ec2 instances 
+
+
+
+Thankyou :) 
+
+
+          
+
+
+ 
